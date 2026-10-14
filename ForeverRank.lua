@@ -8,9 +8,6 @@ local spellIDMap = {}
 local scanPending = false
 local scanQueuedAfterCombat = false
 
--- Native WoW inline star texture (works in Chat and Tooltips regardless of font)
-local STAR_ICON = "|TInterface\\TargetingFrame\\UI-RaidTargetingIcon_1:11:11:0:0|t"
-
 local SCHOOL_IDS = {
     physical = 1,
     holy     = 2,
@@ -403,7 +400,7 @@ local function UpdateActionBarBadges()
                         local bestRank, _, maxRank, _, totalRanks = GetSpellRankLeaders(meta.spellName)
                         if totalRanks > 1 and meta.rankNum and meta.rankNum > 0 then
                             if meta.rankText == bestRank then
-                                badge:SetText(string.format("|cff00ff00R%d*|r", meta.rankNum))
+                                badge:SetText(string.format("|cff00ff00R%d|r", meta.rankNum))
                             elseif meta.rankText == maxRank then
                                 badge:SetText(string.format("|cffffd100R%d|r", meta.rankNum))
                             else
@@ -555,7 +552,7 @@ local function OnSpellTooltip(tooltip, data)
     local bestRank, bestEff = GetSpellRankLeaders(result.spellName)
     if bestRank and result.rankText ~= "" then
         if bestRank == result.rankText then
-            tooltip:AddDoubleLine("Downrank Status:", STAR_ICON .. " |cff00ff00Peak Mana Efficiency|r")
+            tooltip:AddDoubleLine("Downrank Status:", "|cff00ff00Peak Mana Efficiency|r")
         else
             local diffPct = ((result.effPerMana - bestEff) / bestEff) * 100
             tooltip:AddDoubleLine(
@@ -624,8 +621,8 @@ SlashCmdList["FOREVERRANK"] = function(msg)
             count = count + 1
             local rData = rankCache[spellName][bestRank]
             local label = (rData.kind == "HEAL") and "HPM" or "DPM"
-            print(string.format("  • |cffffffff%s|r: %s |cff00ff00%s|r (%.2f %s, %.0f avg, %d mana) | Max: |cffffd100%s|r",
-                spellName, STAR_ICON, bestRank, bestEff, label, rData.avg, rData.cost, maxRank or bestRank))
+            print(string.format("  • |cffffffff%s|r: |cff00ff00%s|r (%.2f %s, %.0f avg, %d mana) | Max: |cffffd100%s|r",
+                spellName, bestRank, bestEff, label, rData.avg, rData.cost, maxRank or bestRank))
         end
     end
     if count == 0 then
