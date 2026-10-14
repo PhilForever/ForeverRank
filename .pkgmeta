@@ -1,0 +1,7 @@
+package-as: ForeverRank
+
+ignore:
+  - README.md
+  - .gitignore
+  - .pkgmeta
+  - .github

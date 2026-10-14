@@ -1,0 +1,9 @@
+## Interface: 16001
+## Title: ForeverRank |cff00ccff(Mana Efficiency)|r
+## Notes: Live HPM, DPM, and downrank efficiency calculator for WoW: Forever.
+## Author: Phil
+## Version: @project-version@
+## SavedVariablesPerCharacter: ForeverRankDB
+## X-Curse-Project-ID: 1745516
+
+ForeverRank.lua
