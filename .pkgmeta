@@ -5,3 +5,4 @@ ignore:
   - .gitignore
   - .pkgmeta
   - .github
+  - tests
